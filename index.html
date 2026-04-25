@@ -153,6 +153,61 @@
       pointer-events: none;
     }
 
+    /* ========== PARALLAX STYLES ========== */
+    .parallax-wrapper {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .parallax-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 120%; /* Extra height for movement */
+      background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, 
+        var(--bg-primary) 0%, 
+        rgba(var(--bg-primary-rgb, 255, 255, 255), 0.85) 50%, 
+        var(--bg-primary) 100%
+      );
+      z-index: 1;
+    }
+    [data-theme="dark"] .hero-overlay {
+      background: linear-gradient(to bottom, 
+        var(--bg-primary) 0%, 
+        rgba(3, 3, 4, 0.8) 50%, 
+        var(--bg-primary) 100%
+      );
+    }
+    [data-theme="light"] { --bg-primary-rgb: 255, 255, 255; }
+    [data-theme="dark"] { --bg-primary-rgb: 3, 3, 4; }
+
+    /* ========== SECTION BACKGROUNDS ========== */
+    .section-bg-container {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .section-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.05;
+      filter: grayscale(100%);
+    }
+    [data-theme="dark"] .section-bg-img {
+      opacity: 0.03;
+    }
+
     .competency-card {
       background: var(--bg-card);
       border: 1px solid var(--border-card);
@@ -274,11 +329,25 @@
       50% { opacity: 0.5; }
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+    @keyframes logo-launch {
+      0% { transform: translateY(0) rotate(0deg) scale(1); }
+      30% { transform: translateY(-3px) rotate(-12deg) scale(1.1); }
+      60% { transform: translateY(-1px) rotate(8deg) scale(1.05); }
+      100% { transform: translateY(0) rotate(0deg) scale(1); }
     }
-    .float-anim { animation: float 6s ease-in-out infinite; }
+
+    @keyframes logo-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
+    .logo-container:hover .logo-svg {
+      animation: logo-launch 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .logo-container {
+      animation: logo-float 3s ease-in-out infinite;
+    }
 
     .mobile-menu {
       max-height: 0;
@@ -300,11 +369,24 @@
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center" style="background: var(--bg-nav); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-primary);">
     <div class="max-w-7xl mx-auto w-full px-6 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2.5 group">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(to top right, #6366f1, #a855f7);">
-          <span class="iconify text-white text-sm" data-icon="mdi:shield-crown-outline"></span>
+      <a href="#" class="flex items-center gap-3 logo-container group">
+        <div class="relative w-9 h-9 flex items-center justify-center">
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 blur-[2px] opacity-40 group-hover:opacity-80 transition-opacity"></div>
+          <div class="relative w-full h-full rounded-xl flex items-center justify-center bg-gradient-to-tr from-indigo-500 to-purple-500 shadow-lg logo-svg overflow-hidden">
+             <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C12 2 9 6 9 11C9 14.5 11 16 12 16C13 16 15 14.5 15 11C15 6 12 2 12 2Z" fill="currentColor"/>
+                <path d="M12 16L10 20H14L12 16Z" fill="white" fill-opacity="0.5"/>
+                <path d="M9 12L6 15V17L9 16V12Z" fill="white" fill-opacity="0.3"/>
+                <path d="M15 12L18 15V17L15 16V12Z" fill="white" fill-opacity="0.3"/>
+                <circle cx="12" cy="9" r="1.5" fill="white" fill-opacity="0.8"/>
+             </svg>
+             <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+          </div>
         </div>
-        <span class="text-sm font-semibold tracking-tight" style="color: var(--text-primary);">Renaissance Consultants</span>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold tracking-[0.2em] uppercase leading-none" style="color: var(--text-primary);">Renaissance</span>
+          <span class="text-[10px] font-medium tracking-[0.1em] uppercase text-indigo-500 leading-tight">Consultants</span>
+        </div>
       </a>
 
       <div class="hidden md:flex items-center gap-8">
@@ -343,6 +425,11 @@
 
   <!-- Hero Section -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <div class="parallax-wrapper">
+      <div class="parallax-bg" id="parallaxHero"></div>
+      <div class="hero-overlay"></div>
+    </div>
+    
     <div class="hero-glow"></div>
     <div class="hero-glow-2"></div>
 
@@ -401,8 +488,11 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-24 md:py-32 section-alt relative">
-    <div class="max-w-7xl mx-auto px-6">
+  <section id="about" class="py-24 md:py-32 section-alt relative overflow-hidden">
+    <div class="section-bg-container">
+      <img src="https://images.unsplash.com/photo-1522071823991-b9671f9d7f1f?auto=format&fit=crop&q=80&w=2000" class="section-bg-img" alt="Collaborative workspace">
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="grid md:grid-cols-2 gap-16 items-center">
         <div>
           <div class="reveal">
@@ -522,8 +612,11 @@
   </section>
 
   <!-- Core Competencies Section -->
-  <section id="competencies" class="py-24 md:py-32 section-alt relative">
-    <div class="max-w-7xl mx-auto px-6">
+  <section id="competencies" class="py-24 md:py-32 section-alt relative overflow-hidden">
+    <div class="section-bg-container">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000" class="section-bg-img" alt="Abstract business data">
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
         <span class="reveal text-[11px] font-semibold tracking-widest uppercase text-indigo-500 mb-4 block">Our Core Competencies</span>
         <h2 class="reveal delay-100 text-3xl md:text-4xl font-medium tracking-tight gradient-title">
@@ -669,38 +762,41 @@
   </section>
 
   <!-- Founder Section -->
-  <section id="founder" class="py-24 md:py-32 section-alt relative">
-    <div class="max-w-7xl mx-auto px-6">
+  <section id="founder" class="py-24 md:py-32 section-alt relative overflow-hidden">
+    <div class="section-bg-container">
+      <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2000" class="section-bg-img" alt="Professional office texture">
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="reveal flex justify-center md:justify-end">
           <div class="relative">
             <div class="absolute -inset-8 opacity-20" style="background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent 70%);"></div>
 
-            <div class="relative founder-card rounded-3xl p-10 w-[340px] md:w-[380px]">
-              <div class="w-24 h-24 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
-                <span class="iconify text-white text-4xl" data-icon="mdi:account"></span>
+            <div class="relative founder-card rounded-3xl p-10 w-[340px] md:w-[380px] flex flex-col items-center text-center">
+              <div class="w-28 h-28 rounded-2xl overflow-hidden mb-6 shadow-lg ring-4 ring-indigo-500/10">
+                <img src="swati jain.jfif" alt="Swati Jain" class="w-full h-full object-cover">
               </div>
 
               <h3 class="text-xl font-medium mb-1" style="color: var(--text-primary);">Swati Jain</h3>
               <p class="text-sm text-indigo-500 font-medium mb-6">Founder & Director</p>
 
-              <div class="space-y-4">
-                <div class="flex items-center gap-3 p-3 rounded-xl stat-item">
-                  <span class="iconify text-indigo-500 text-lg" data-icon="mdi:briefcase-outline"></span>
+              <div class="space-y-4 w-full">
+                <div class="flex items-center gap-3 p-3 rounded-xl stat-item text-left">
+                  <span class="iconify text-indigo-500 text-lg flex-shrink-0" data-icon="mdi:briefcase-outline"></span>
                   <div>
                     <div class="text-xs text-muted">Experience</div>
                     <div class="text-sm font-medium" style="color: var(--text-primary);">18+ Years</div>
                   </div>
                 </div>
-                <div class="flex items-center gap-3 p-3 rounded-xl stat-item">
-                  <span class="iconify text-purple-500 text-lg" data-icon="mdi:medal-outline"></span>
+                <div class="flex items-center gap-3 p-3 rounded-xl stat-item text-left">
+                  <span class="iconify text-purple-500 text-lg flex-shrink-0" data-icon="mdi:medal-outline"></span>
                   <div>
                     <div class="text-xs text-muted">Education</div>
                     <div class="text-sm font-medium" style="color: var(--text-primary);">Gold Medalist, MSW (HR)</div>
                   </div>
                 </div>
-                <div class="flex items-center gap-3 p-3 rounded-xl stat-item">
-                  <span class="iconify text-emerald-500 text-lg" data-icon="mdi:domain"></span>
+                <div class="flex items-center gap-3 p-3 rounded-xl stat-item text-left">
+                  <span class="iconify text-emerald-500 text-lg flex-shrink-0" data-icon="mdi:domain"></span>
                   <div>
                     <div class="text-xs text-muted">Sectors</div>
                     <div class="text-sm font-medium" style="color: var(--text-primary);">Manufacturing, IT, Service, Academia</div>
@@ -720,12 +816,12 @@
           <div class="reveal">
             <span class="text-[11px] font-semibold tracking-widest uppercase text-indigo-500 mb-4 block">Meet Our Founder</span>
             <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-6 gradient-title">
-              Leadership Rooted in Experience & Excellence
+              Leadership Rooted in Corporate Excellence
             </h2>
           </div>
           <div class="reveal delay-100">
             <p class="text-base font-light leading-relaxed text-secondary mb-6">
-              With over 18 years of diverse HR leadership across sectors like Manufacturing, IT, Service, and Academia, Swati Jain brings a wealth of practical wisdom to every engagement.
+              As the Head of Human Resources at Engineering Technique and Founder of Renaissance Consultants, Swati Jain brings a unique dual perspective to HR leadership. With over 18 years of experience, she specializes in bridging the gap between technical requirements and human resource needs.
             </p>
             <p class="text-base font-light leading-relaxed text-secondary mb-6">
               A Gold Medalist with a Master's in Human Resources from MSU Baroda, she founded Renaissance Consultants with a singular vision � to revive excellence in people management and inspire growth at every organizational level.
@@ -799,11 +895,22 @@
   <footer class="py-12 relative footer-border" style="border-top: 1px solid var(--border-primary);">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-3 gap-8 items-center">
-        <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background: linear-gradient(to top right, #6366f1, #a855f7);">
-            <span class="iconify text-white text-xs" data-icon="mdi:shield-crown-outline"></span>
+        <div class="flex items-center gap-3 logo-container group">
+          <div class="relative w-8 h-8 flex items-center justify-center">
+            <div class="absolute inset-0 rounded-lg bg-gradient-to-tr from-indigo-600 to-purple-600 blur-[1px] opacity-40 group-hover:opacity-80 transition-opacity"></div>
+            <div class="relative w-full h-full rounded-lg flex items-center justify-center bg-gradient-to-tr from-indigo-500 to-purple-500 shadow-md logo-svg overflow-hidden">
+               <svg viewBox="0 0 24 24" class="w-4 h-4 text-white" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C12 2 9 6 9 11C9 14.5 11 16 12 16C13 16 15 14.5 15 11C15 6 12 2 12 2Z" fill="currentColor"/>
+                  <path d="M12 16L10 20H14L12 16Z" fill="white" fill-opacity="0.5"/>
+                  <path d="M9 12L6 15V17L9 16V12Z" fill="white" fill-opacity="0.3"/>
+                  <path d="M15 12L18 15V17L15 16V12Z" fill="white" fill-opacity="0.3"/>
+               </svg>
+            </div>
           </div>
-          <span class="text-sm font-semibold tracking-tight" style="color: var(--text-primary);">Renaissance Consultants</span>
+          <div class="flex flex-col">
+            <span class="text-[10px] font-bold tracking-[0.2em] uppercase leading-none" style="color: var(--text-primary);">Renaissance</span>
+            <span class="text-[8px] font-medium tracking-[0.1em] uppercase text-indigo-500 leading-tight">Consultants</span>
+          </div>
         </div>
 
         <div class="text-center">
@@ -831,6 +938,15 @@
   </footer>
 
   <script>
+    // ========== PARALLAX LOGIC ==========
+    const parallaxHero = document.getElementById('parallaxHero');
+    window.addEventListener('scroll', () => {
+      if (parallaxHero) {
+        const scrolled = window.pageYOffset;
+        parallaxHero.style.transform = `translateY(${scrolled * 0.4}px)`;
+      }
+    });
+
     // ========== THEME TOGGLE ==========
     const html = document.documentElement;
     const themeIconDesktop = document.getElementById('themeIconDesktop');
