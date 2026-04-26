@@ -358,6 +358,65 @@
 
     .section-alt { background: var(--bg-secondary); }
     .section-divider { border-color: var(--border-primary); }
+
+    /* ========== PREMIUM MARQUEE ========== */
+    .marquee-container {
+      overflow: hidden;
+      display: flex;
+      gap: 4rem;
+      user-select: none;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+    .marquee-content {
+      display: flex;
+      flex-shrink: 0;
+      gap: 4rem;
+      min-width: 100%;
+      animation: marquee-scroll 30s linear infinite;
+    }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-100% - 4rem)); }
+    }
+    .client-logo {
+      height: 2.5rem;
+      filter: grayscale(100%) opacity(0.5);
+      transition: all 0.3s ease;
+    }
+    [data-theme="dark"] .client-logo { filter: grayscale(100%) invert(1) opacity(0.4); }
+    .client-logo:hover { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
+
+    /* ========== WHATSAPP BUTTON ========== */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      width: 3.5rem;
+      height: 3.5rem;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .whatsapp-btn:hover { transform: scale(1.1) rotate(12deg); }
+
+    /* ========== TEXT REVEAL ========== */
+    .char-reveal {
+      overflow: hidden;
+      display: inline-block;
+    }
+    .char-reveal span {
+      display: inline-block;
+      transform: translateY(100%);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active .char-reveal span { transform: translateY(0); }
+
     .footer-border { border-color: var(--border-primary); }
     .footer-sub-border { border-color: var(--border-card); }
 
@@ -454,8 +513,8 @@
       </div>
 
       <h1 class="reveal delay-100 text-6xl md:text-8xl font-bold tracking-tighter leading-none mb-8">
-        <span class="gradient-title uppercase">RENAISSANCE</span><br>
-        <span class="gradient-title uppercase">CONSULTANTS</span>
+        <span class="gradient-title uppercase char-reveal"><span>RENAISSANCE</span></span><br>
+        <span class="gradient-title uppercase char-reveal"><span>CONSULTANTS</span></span>
       </h1>
 
       <p class="reveal delay-200 text-xl md:text-2xl font-light leading-relaxed text-secondary max-w-3xl mx-auto mb-12">
@@ -472,29 +531,54 @@
         </a>
       </div>
 
-      <div class="reveal delay-400 flex flex-wrap items-center justify-center gap-8 md:gap-16 mt-16 pt-8 section-divider" style="border-top: 1px solid var(--border-primary);">
+  <!-- Stats Section -->
+  <section class="py-12 bg-secondary/50 border-y border-primary">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal flex flex-wrap items-center justify-center gap-8 md:gap-16">
         <div class="text-center">
           <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">400+</div>
-          <div class="text-xs text-muted mt-1">Exclusive Clients</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Exclusive Clients</div>
         </div>
         <div class="text-center">
           <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">18+</div>
-          <div class="text-xs text-muted mt-1">Years Experience</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Years Experience</div>
         </div>
         <div class="text-center">
           <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">80+</div>
-          <div class="text-xs text-muted mt-1">Projects Completed</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Projects Completed</div>
         </div>
         <div class="text-center">
           <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">99%</div>
-          <div class="text-xs text-muted mt-1">Success Rate</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Success Rate</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 float-anim">
-      <div class="w-6 h-10 rounded-full flex items-start justify-center pt-2" style="border: 2px solid var(--border-primary);">
-        <div class="w-1 h-2.5 rounded-full" style="background: var(--text-faint);"></div>
+  <!-- Client Marquee Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 mb-10 text-center">
+      <span class="reveal text-[10px] font-bold uppercase tracking-[0.3em] text-muted mb-4 block">Trusted by Industry Leaders</span>
+    </div>
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <!-- Stylized Text Logos for Premium Look -->
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Engineering Technique</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">MSU Baroda</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Gujarat Service Corp</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Baroda Startups</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">IT Solutions India</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Techno-Ventures</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Edu-Consultants</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Engineering Technique</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">MSU Baroda</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Gujarat Service Corp</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Baroda Startups</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">IT Solutions India</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Techno-Ventures</span>
+        <span class="text-2xl font-bold tracking-tighter text-muted/40 uppercase px-8">Edu-Consultants</span>
       </div>
     </div>
   </section>
@@ -1043,6 +1127,60 @@
     </div>
   </section>
 
+  <!-- Testimonials Section -->
+  <section class="py-24 md:py-32 relative overflow-hidden section-alt">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="reveal text-[11px] font-semibold tracking-widest uppercase text-emerald-500 mb-4 block">Client Success Stories</span>
+        <h2 class="reveal delay-100 text-3xl md:text-4xl font-medium tracking-tight gradient-title">
+          Delivering Excellence, Measuring Impact
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal delay-100 glass-panel p-8 rounded-3xl relative">
+          <span class="iconify text-4xl text-emerald-500/20 absolute top-8 right-8" data-icon="mdi:format-quote-open"></span>
+          <p class="text-sm text-secondary font-light leading-relaxed mb-8 italic">
+            "Renaissance Consultants transformed our HR processes. Their 'New-Edge' approach simplified our operations and boosted team morale significantly."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-xs font-bold text-white">MD</div>
+            <div>
+              <div class="text-xs font-bold text-primary">Managing Director</div>
+              <div class="text-[10px] text-muted">Manufacturing Sector</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-200 glass-panel p-8 rounded-3xl relative">
+          <span class="iconify text-4xl text-emerald-500/20 absolute top-8 right-8" data-icon="mdi:format-quote-open"></span>
+          <p class="text-sm text-secondary font-light leading-relaxed mb-8 italic">
+            "The training modules on IKIGAI and Communication were eye-opening. Swati's expertise in aligning talent with organizational goals is unmatched."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-xs font-bold text-white">HR</div>
+            <div>
+              <div class="text-xs font-bold text-primary">HR Head</div>
+              <div class="text-[10px] text-muted">IT Solutions Firm</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-300 glass-panel p-8 rounded-3xl relative border-l-4 border-l-emerald-500">
+          <span class="iconify text-4xl text-emerald-500/20 absolute top-8 right-8" data-icon="mdi:format-quote-open"></span>
+          <p class="text-sm text-secondary font-light leading-relaxed mb-8 italic">
+            "We found the essential 'link' for our organizational development. Their visioning workshops gave our leadership team the clarity we needed."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center text-xs font-bold text-white">CEO</div>
+            <div>
+              <div class="text-xs font-bold text-primary">Chief Executive</div>
+              <div class="text-[10px] text-muted">Baroda Startup Hub</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact" class="py-24 md:py-32 relative">
     <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, var(--section-glow), transparent 70%);"></div>
@@ -1342,5 +1480,9 @@
     // ========== INIT FOOTER HOVERS ==========
     setTheme(savedTheme);
   </script>
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919106643178" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <span class="iconify text-2xl" data-icon="mdi:whatsapp"></span>
+  </a>
 </body>
 </html>
