@@ -280,8 +280,24 @@
     setTheme(localStorage.getItem('rc-theme') || 'light');
     document.getElementById('themeToggleDesktop')?.addEventListener('click', () => setTheme(html.getAttribute('data-theme')==='dark'?'light':'dark'));
     document.getElementById('themeToggleMobile')?.addEventListener('click', () => setTheme(html.getAttribute('data-theme')==='dark'?'light':'dark'));
-    function reveal() { document.querySelectorAll('.reveal').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); }); }
-    window.addEventListener('scroll', reveal); window.addEventListener('load', reveal);
+    // ========== SCROLL REVEAL ==========
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      const windowHeight = window.innerHeight;
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 50) {
+          el.classList.add('active');
+        }
+      });
+    }
+    
+    // Initialize immediately and on events
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('DOMContentLoaded', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     mobileMenuBtn?.addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
     function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }

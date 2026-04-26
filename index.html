@@ -530,6 +530,14 @@
           Learn More
         </a>
       </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 float-anim">
+      <div class="w-6 h-10 rounded-full flex items-start justify-center pt-2" style="border: 2px solid var(--border-primary);">
+        <div class="w-1 h-2.5 rounded-full" style="background: var(--text-faint);"></div>
+      </div>
+    </div>
+  </section>
 
   <!-- Stats Section -->
   <section class="py-12 bg-secondary/50 border-y border-primary">
@@ -1394,55 +1402,46 @@
       }
     });
 
-    // ========== THEME TOGGLE ==========
-    const html = document.documentElement;
-    const themeIconDesktop = document.getElementById('themeIconDesktop');
-    const themeIconMobile = document.getElementById('themeIconMobile');
-
-    function setTheme(theme) {
-      html.setAttribute('data-theme', theme);
-      localStorage.setItem('rc-theme', theme);
-      const icon = theme === 'dark' ? 'mdi:weather-night' : 'mdi:weather-sunny';
-      if (themeIconDesktop) themeIconDesktop.setAttribute('data-icon', icon);
-      if (themeIconMobile) themeIconMobile.setAttribute('data-icon', icon);
-      // Update footer hover colors for dark mode
-      document.querySelectorAll('footer a').forEach(a => {
-        if (theme === 'dark') {
-          a.onmouseenter = () => a.style.background = 'rgba(255,255,255,0.05)';
-          a.onmouseleave = () => a.style.background = 'transparent';
-        } else {
-          a.onmouseenter = () => a.style.background = '#EEF2FF';
-          a.onmouseleave = () => a.style.background = 'transparent';
-        }
-      });
-    }
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('rc-theme') || 'light';
-    setTheme(savedTheme);
-
-    document.getElementById('themeToggleDesktop').addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-    document.getElementById('themeToggleMobile').addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
     // ========== SCROLL REVEAL ==========
     function revealOnScroll() {
       const reveals = document.querySelectorAll('.reveal');
       const windowHeight = window.innerHeight;
       reveals.forEach(el => {
         const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight - 80) {
+        if (elementTop < windowHeight - 50) {
           el.classList.add('active');
         }
       });
     }
+    
+    // Initialize immediately and on events
+    revealOnScroll();
     window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('DOMContentLoaded', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
+
+    // ========== THEME TOGGLE ==========
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('rc-theme', theme);
+      const icon = theme === 'dark' ? 'mdi:weather-night' : 'mdi:weather-sunny';
+      if (themeIconDesktop) themeIconDesktop.setAttribute('data-icon', icon);
+      if (themeIconMobile) themeIconMobile.setAttribute('data-icon', icon);
+      
+      // Safe access to footer links
+      const footerLinks = document.querySelectorAll('footer a');
+      if (footerLinks.length > 0) {
+        footerLinks.forEach(a => {
+          if (theme === 'dark') {
+            a.onmouseenter = () => a.style.background = 'rgba(255,255,255,0.05)';
+            a.onmouseleave = () => a.style.background = 'transparent';
+          } else {
+            a.onmouseenter = () => a.style.background = '#EEF2FF';
+            a.onmouseleave = () => a.style.background = 'transparent';
+          }
+        });
+      }
+    }
 
     // ========== MOBILE MENU ==========
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
