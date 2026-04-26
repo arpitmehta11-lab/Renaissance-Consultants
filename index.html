@@ -114,6 +114,23 @@
     .delay-400 { transition-delay: 400ms; }
     .delay-500 { transition-delay: 500ms; }
 
+    /* ========== SECTION POLISH ========== */
+    section {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    @media (min-width: 768px) {
+      section {
+        padding-top: 7rem;
+        padding-bottom: 7rem;
+      }
+    }
+
+    .dot-pattern {
+      background-image: radial-gradient(var(--border-primary) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
     .gradient-title {
       background: linear-gradient(135deg, var(--text-primary) 0%, #1e3a8a 100%);
       -webkit-background-clip: text;
@@ -506,58 +523,89 @@
 
     <div class="absolute inset-0" style="opacity: var(--grid-pattern-opacity); background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23999999&quot; fill-opacity=&quot;1&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
 
-    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-      <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8" style="background: var(--accent-bg); border: 1px solid var(--accent-border);">
-        <span class="w-2 h-2 rounded-full bg-blue-900 pulse-dot"></span>
-        <span class="text-xs font-medium text-emerald-600">Strategic HR Consultancy — Vadodara</span>
-      </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
+        <!-- Hero Text Content -->
+        <div class="text-left">
+          <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8" style="background: var(--accent-bg); border: 1px solid var(--accent-border);">
+            <span class="w-2 h-2 rounded-full bg-blue-900 pulse-dot"></span>
+            <span class="text-xs font-medium text-emerald-600 uppercase tracking-widest">Strategic HR Consultancy</span>
+          </div>
 
-      <h1 class="reveal delay-100 text-6xl md:text-8xl font-bold tracking-tighter leading-none mb-8">
-        <span class="gradient-title uppercase char-reveal"><span>RENAISSANCE</span></span><br>
-        <span class="gradient-title uppercase char-reveal"><span>CONSULTANTS</span></span>
-      </h1>
+          <h1 class="reveal delay-100 text-5xl md:text-7xl xl:text-8xl font-bold tracking-tighter leading-tight mb-8">
+            <span class="gradient-title uppercase char-reveal"><span>RENAISSANCE</span></span><br>
+            <span class="gradient-title uppercase char-reveal"><span>CONSULTANTS</span></span>
+          </h1>
 
-      <p class="reveal delay-200 text-xl md:text-2xl font-light leading-relaxed text-secondary max-w-3xl mx-auto mb-12">
-        Connecting Aspirations to Achievements.
-      </p>
+          <p class="reveal delay-200 text-2xl md:text-3xl font-light leading-relaxed text-secondary max-w-xl mb-12">
+            Connecting Aspirations to Achievements with precision and excellence.
+          </p>
 
-      <div class="reveal delay-300 flex flex-col sm:flex-row items-center justify-center gap-5">
-        <a href="#contact" class="btn-primary text-sm font-semibold px-10 py-4 rounded-xl inline-flex items-center gap-2">
-          Get Appointment
-          <span class="iconify text-base" data-icon="mdi:calendar-check"></span>
-        </a>
-        <a href="#about" class="btn-outline text-sm font-semibold px-10 py-4 rounded-xl inline-flex items-center gap-2">
-          Learn More
-        </a>
-      </div>
-    </div>
+          <div class="reveal delay-300 flex flex-col sm:flex-row items-center justify-start gap-5">
+            <a href="#contact" class="btn-primary text-sm font-semibold px-10 py-4 rounded-xl inline-flex items-center gap-2">
+              Get Appointment
+              <span class="iconify text-base" data-icon="mdi:calendar-check"></span>
+            </a>
+            <a href="#about" class="btn-outline text-sm font-semibold px-10 py-4 rounded-xl inline-flex items-center gap-2">
+              Learn More
+            </a>
+          </div>
+          </div>
 
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 float-anim">
-      <div class="w-6 h-10 rounded-full flex items-start justify-center pt-2" style="border: 2px solid var(--border-primary);">
-        <div class="w-1 h-2.5 rounded-full" style="background: var(--text-faint);"></div>
-      </div>
-    </div>
-  </section>
+          <!-- Hero Visual Element -->
+          <div class="hidden lg:block reveal delay-400 relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-primary/10">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" class="w-full h-[500px] object-cover" alt="Team Strategic Planning">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
+          </div>
+          <!-- Abstract floaters to fill space -->
+          <div class="absolute -top-6 -right-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-blue-900/10 rounded-full blur-3xl"></div>
+          </div>
+          </div>
+          </div>
 
+          <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal delay-500">
+          <span class="text-[10px] uppercase tracking-[0.2em] text-muted font-bold">Scroll to Explore</span>
+          <div class="w-6 h-10 rounded-full flex items-start justify-center pt-2" style="border: 2px solid var(--border-primary);">
+          <div class="w-1 h-2 rounded-full bg-emerald-500 animate-bounce"></div>
+          </div>
+          </div>
+          </section>
   <!-- Stats Section -->
-  <section class="py-12 bg-secondary/50 border-y border-primary">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="reveal flex flex-wrap items-center justify-center gap-8 md:gap-16">
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">400+</div>
-          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Exclusive Clients</div>
+  <section class="py-20 bg-secondary/50 border-y border-primary relative overflow-hidden">
+    <!-- Background Watermark Text to fill space -->
+    <div class="absolute -bottom-10 -left-10 text-[12rem] font-bold text-primary/5 select-none pointer-events-none uppercase tracking-tighter">Growth</div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="reveal flex flex-wrap items-center justify-center gap-12 md:gap-24">
+        <div class="text-center group">
+          <div class="w-12 h-12 rounded-2xl bg-blue-900/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <span class="iconify text-2xl text-blue-900" data-icon="mdi:account-group"></span>
+          </div>
+          <div class="text-3xl md:text-4xl font-bold gradient-title">400+</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-2 font-bold">Exclusive Clients</div>
         </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">18+</div>
-          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Years Experience</div>
+        <div class="text-center group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <span class="iconify text-2xl text-emerald-500" data-icon="mdi:calendar-clock"></span>
+          </div>
+          <div class="text-3xl md:text-4xl font-bold gradient-title">18+</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-2 font-bold">Years Experience</div>
         </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">80+</div>
-          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Projects Completed</div>
+        <div class="text-center group">
+          <div class="w-12 h-12 rounded-2xl bg-blue-900/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <span class="iconify text-2xl text-blue-900" data-icon="mdi:check-decagram"></span>
+          </div>
+          <div class="text-3xl md:text-4xl font-bold gradient-title">80+</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-2 font-bold">Projects Completed</div>
         </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-semibold" style="color: var(--text-primary);">99%</div>
-          <div class="text-[10px] uppercase tracking-widest text-muted mt-1 font-bold">Success Rate</div>
+        <div class="text-center group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <span class="iconify text-2xl text-emerald-500" data-icon="mdi:trending-up"></span>
+          </div>
+          <div class="text-3xl md:text-4xl font-bold gradient-title">99%</div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mt-2 font-bold">Success Rate</div>
         </div>
       </div>
     </div>
@@ -592,17 +640,20 @@
   </section>
 
   <!-- Welcome Section -->
-  <section id="welcome" class="py-24 md:py-32 relative overflow-hidden">
+  <section id="welcome" class="py-24 md:py-32 relative overflow-hidden dot-pattern">
     <div class="section-bg-container">
       <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=2000" class="section-bg-img" alt="Modern office interior">
     </div>
     <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="grid md:grid-cols-2 gap-16 items-start">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
         <div class="reveal">
           <span class="text-[11px] font-semibold tracking-widest uppercase text-emerald-500 mb-4 block">Welcome to Renaissance</span>
           <h2 class="text-3xl md:text-5xl font-medium tracking-tight mb-8 gradient-title leading-tight">
             The Link Between Potential and Performance
           </h2>
+          <div class="relative rounded-2xl overflow-hidden mb-8 shadow-xl lg:hidden">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800" class="w-full h-48 object-cover" alt="Collaboration">
+          </div>
           <p class="text-base font-light leading-relaxed text-secondary mb-6">
             At Renaissance Consultants, we believe that every organization has untapped potential waiting to be unleashed. We don't just provide services; we become the essential link that transforms your aspirations into measurable achievements.
           </p>
@@ -637,57 +688,57 @@
     </div>
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <div class="reveal">
+        <div class="reveal glass-panel p-8 md:p-12 rounded-[2rem] relative overflow-hidden border-primary/10 shadow-2xl">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-900 via-emerald-500 to-blue-800"></div>
+          <div class="relative">
             <span class="text-[11px] font-semibold tracking-widest uppercase text-emerald-500 mb-4 block">Who We Are</span>
             <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-6 gradient-title">
               Transforming How Organizations Manage People
             </h2>
-          </div>
-          <div class="reveal delay-100">
             <p class="text-base font-light leading-relaxed text-secondary mb-6">
               Incorporated in 2023 in Vadodara, Gujarat, Renaissance Consultants is an HR Consultancy dedicated to transforming how organizations manage their most valuable asset—people.
             </p>
-            <div class="flex items-center gap-4 p-5 rounded-2xl glass-panel border-l-4 border-l-blue-900 mb-6">
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-blue-900/5 border-l-4 border-l-blue-900 mb-6">
               <p class="text-sm italic text-secondary font-light">
                 "Leadership is not about being in charge. It is about taking care of those in your charge." — Simon Sinek
               </p>
             </div>
             <p class="text-base font-light leading-relaxed text-secondary mb-8">
-              We deliver tailored consulting solutions and trainings that accelerate growth, optimize performance, and create lasting value. Our approach is strategic, personalized, and impact-driven — because your success defines ours.
+              We deliver tailored consulting solutions and trainings that accelerate growth, optimize performance, and create lasting value. Our approach is strategic, personalized, and impact-driven.
             </p>
           </div>
           
-          <!-- Core Values Injection -->
-          <div class="reveal delay-200 grid grid-cols-3 gap-4 mb-10">
-            <div class="flex flex-col items-center text-center p-3 rounded-xl" style="background: var(--stat-item-bg);">
+          <!-- Core Values -->
+          <div class="grid grid-cols-3 gap-4 mb-10">
+            <div class="flex flex-col items-center text-center p-3 rounded-xl bg-white/40 dark:bg-white/5 border border-primary/5">
               <span class="iconify text-emerald-500 text-xl mb-2" data-icon="mdi:star-outline"></span>
               <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-primary);">Excellence</span>
             </div>
-            <div class="flex flex-col items-center text-center p-3 rounded-xl" style="background: var(--stat-item-bg);">
+            <div class="flex flex-col items-center text-center p-3 rounded-xl bg-white/40 dark:bg-white/5 border border-primary/5">
               <span class="iconify text-blue-800 text-xl mb-2" data-icon="mdi:lightbulb-on-outline"></span>
               <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-primary);">Creativity</span>
             </div>
-            <div class="flex flex-col items-center text-center p-3 rounded-xl" style="background: var(--stat-item-bg);">
+            <div class="flex flex-col items-center text-center p-3 rounded-xl bg-white/40 dark:bg-white/5 border border-primary/5">
               <span class="iconify text-emerald-500 text-xl mb-2" data-icon="mdi:account-group-outline"></span>
               <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-primary);">Teamwork</span>
             </div>
           </div>
 
-          <div class="reveal delay-300 flex items-center gap-4">
+          <div class="flex items-center gap-4">
             <div class="flex -space-x-2">
               <div class="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-[10px] font-semibold text-white ring-2 ring-white">RC</div>
               <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-[10px] font-semibold text-white ring-2 ring-white">HR</div>
               <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-[10px] font-semibold text-white ring-2 ring-white">SJ</div>
             </div>
-            <span class="text-xs text-muted">Trusted by businesses across Gujarat & beyond</span>
+            <span class="text-[11px] text-muted font-medium">Trusted by businesses across India</span>
           </div>
         </div>
 
         <div class="reveal delay-200">
           <div class="glass-panel rounded-2xl p-8 relative overflow-hidden" style="box-shadow: var(--shadow-card);">
             <div class="absolute top-0 right-0 w-40 h-40 opacity-20" style="background: radial-gradient(circle, rgba(30, 58, 138, 0.4), transparent 70%);"></div>
-            <div class="space-y-6 relative z-10">
+            <div class="grid sm:grid-cols-2 gap-6 relative z-10">
+              <!-- 1. Strategic Vision -->
               <div class="flex flex-col gap-4 p-4 rounded-2xl bg-white/50 dark:bg-white/5 border border-primary/10">
                 <div class="w-full h-32 rounded-xl overflow-hidden mb-2">
                   <img src="https://images.unsplash.com/photo-1507679799987-c7377bc56509?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Strategic Vision">
@@ -698,11 +749,12 @@
                   </div>
                   <div>
                     <h4 class="text-sm font-medium mb-1" style="color: var(--text-primary);">Strategic Vision</h4>
-                    <p class="text-xs text-muted leading-relaxed">We bridge the gap between where you are and where you want to be.</p>
+                    <p class="text-[10px] text-muted leading-relaxed">We bridge the gap between where you are and where you want to be.</p>
                   </div>
                 </div>
               </div>
 
+              <!-- 2. High-Performance Cultures -->
               <div class="flex flex-col gap-4 p-4 rounded-2xl bg-white/50 dark:bg-white/5 border border-primary/10">
                 <div class="w-full h-32 rounded-xl overflow-hidden mb-2">
                   <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Culture">
@@ -712,8 +764,40 @@
                     <span class="iconify text-rose-500 text-xl" data-icon="mdi:account-group-outline"></span>
                   </div>
                   <div>
-                    <h4 class="text-sm font-medium mb-1" style="color: var(--text-primary);">High-Performance Cultures</h4>
-                    <p class="text-xs text-muted leading-relaxed">Building environments where talent thrives and grows.</p>
+                    <h4 class="text-sm font-medium mb-1" style="color: var(--text-primary);">Performance Culture</h4>
+                    <p class="text-[10px] text-muted leading-relaxed">Building environments where talent thrives and grows.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Operational Excellence -->
+              <div class="flex flex-col gap-4 p-4 rounded-2xl bg-white/50 dark:bg-white/5 border border-primary/10">
+                <div class="w-full h-32 rounded-xl overflow-hidden mb-2">
+                  <img src="https://images.unsplash.com/photo-1454165833767-027ffea9e778?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Operational Excellence">
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(16, 185, 129, 0.1);">
+                    <span class="iconify text-blue-800 text-xl" data-icon="mdi:cog-outline"></span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium mb-1" style="color: var(--text-primary);">Process Mastery</h4>
+                    <p class="text-[10px] text-muted leading-relaxed">Systems that run seamlessly and efficiently every day.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Impact-Driven Results -->
+              <div class="flex flex-col gap-4 p-4 rounded-2xl bg-white/50 dark:bg-white/5 border border-primary/10">
+                <div class="w-full h-32 rounded-xl overflow-hidden mb-2">
+                  <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Impact">
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(16, 185, 129, 0.1);">
+                    <span class="iconify text-emerald-500 text-xl" data-icon="mdi:chart-line"></span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium mb-1" style="color: var(--text-primary);">Impact & Value</h4>
+                    <p class="text-[10px] text-muted leading-relaxed">Measurable outcomes that create lasting business value.</p>
                   </div>
                 </div>
               </div>
